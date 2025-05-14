@@ -23,6 +23,17 @@ function PostForm() {
         })
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios
+            .post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formData)
+            .then(res => {
+                console.log(res.data);
+                alert('Richiesta inviata con successo');
+
+            })
+    }
+
 
     return (
         <form>
@@ -72,7 +83,7 @@ function PostForm() {
             <button
                 type="button"
                 className="btn btn-primary mt-4"
-                onClick={''}>
+                onClick={handleSubmit}>
                 Invia
             </button>
 
