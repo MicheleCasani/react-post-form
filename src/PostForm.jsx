@@ -2,7 +2,11 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 
-const TicketForm = () => {
+
+
+
+function PostForm() {
+
     const [formData, setFormData] = useState({
         title: "",
         author: "",
@@ -10,18 +14,14 @@ const TicketForm = () => {
         public: false,
         id: ""
     })
-}
 
-handleChange = (event) => {
-    const { name, value, type, checked } = event.target
+    const handleChange = (event) => {
+        const { name, value, type, checked } = event.target
 
-    setFormData({
-        ...formData, [name]: type === "checkbox" ? checked : value,
-    })
-}
-
-
-function PostForm() {
+        setFormData({
+            ...formData, [name]: type === "checkbox" ? checked : value,
+        })
+    }
 
 
     return (
@@ -29,26 +29,32 @@ function PostForm() {
             <div className="row g-3">
                 <div className="col-12 col-md-6">
                     <input
-                        value={formData.author}
                         type="text"
+                        name="author"
                         placeholder="Autore"
                         className="form-control"
+                        value={formData.author}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="col-12 col-md-6">
                     <input
-                        value={formData.title}
                         type="text"
+                        name="title"
                         placeholder="Titolo"
                         className="form-control"
+                        value={formData.title}
+                        onChange={handleChange}
                     />
                 </div>
                 <div className="col-12 ">
                     <input
-                        value={formData.body}
                         type="text"
-                        placeholder="Corpo del post "
+                        name="body"
+                        placeholder="Corpo del post"
                         className="form-control textarea-corpo"
+                        value={formData.body}
+                        onChange={handleChange}
                     />
                 </div>
 
@@ -56,10 +62,12 @@ function PostForm() {
             <div className="col-12 col-md-6 form-check mt-4">
                 Pubblica
                 <input
-                    checked={formData.public}
                     type="checkbox"
-                    name='Pubblica'
-                    className='mx-2' />
+                    name="public"
+                    className="form-check-input mx-2"
+                    checked={formData.public}
+                    onChange={handleChange}
+                />
             </div>
             <button
                 type="button"
