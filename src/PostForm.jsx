@@ -12,12 +12,24 @@ const TicketForm = () => {
     })
 }
 
+handleChange = (event) => {
+    const { name, value, type, checked } = event.target
+
+    setFormData({
+        ...formData, [name]: type === "checkbox" ? checked : value,
+    })
+}
+
+
 function PostForm() {
+
+
     return (
         <form>
             <div className="row g-3">
                 <div className="col-12 col-md-6">
                     <input
+                        value={formData.author}
                         type="text"
                         placeholder="Autore"
                         className="form-control"
@@ -25,6 +37,7 @@ function PostForm() {
                 </div>
                 <div className="col-12 col-md-6">
                     <input
+                        value={formData.title}
                         type="text"
                         placeholder="Titolo"
                         className="form-control"
@@ -32,6 +45,7 @@ function PostForm() {
                 </div>
                 <div className="col-12 ">
                     <input
+                        value={formData.body}
                         type="text"
                         placeholder="Corpo del post "
                         className="form-control textarea-corpo"
@@ -42,6 +56,7 @@ function PostForm() {
             <div className="col-12 col-md-6 form-check mt-4">
                 Pubblica
                 <input
+                    checked={formData.public}
                     type="checkbox"
                     name='Pubblica'
                     className='mx-2' />
